@@ -1,0 +1,8 @@
+rlwrap sqlplus <nom>@ora12
+
+rlwrap sqlplus cochet@ora12
+
+@creation_complexe.sql
+
+select ’drop table" ’ || table_name || ’ " cascade constraints; ’ from use_table;
+
