@@ -5,6 +5,8 @@ DROP INDEX idx_composition_composant;
 DROP TABLE COMPOSITION CASCADE CONSTRAINTS PURGE;
 DROP TABLE PIECE CASCADE CONSTRAINTS PURGE;
 
+
+
 DROP TYPE IndicesQualite_Type;
 DROP TYPE IndiceQualite_Type;
 DROP TYPE Equipe_Type;
@@ -29,7 +31,6 @@ CREATE OR REPLACE TYPE IndiceQualite_Type AS OBJECT (
 CREATE OR REPLACE TYPE IndicesQualite_Type AS TABLE OF IndiceQualite_Type;
 /
 
--- Création de la table PIECE avec les types imbriqués
 CREATE TABLE PIECE (
     piece_id INTEGER PRIMARY KEY,
     nom VARCHAR2(100) NOT NULL,
@@ -41,9 +42,8 @@ CREATE TABLE PIECE (
     indices_qualite IndicesQualite_Type
 ) NESTED TABLE equipe STORE AS equipe_tab
   NESTED TABLE indices_qualite STORE AS indices_qualite_tab;
-/
 
--- Création de la table COMPOSITION
+
 CREATE TABLE COMPOSITION (
     piece_parent_id INTEGER NOT NULL,
     piece_composant_id INTEGER NOT NULL,
@@ -53,6 +53,5 @@ CREATE TABLE COMPOSITION (
     FOREIGN KEY (piece_composant_id) REFERENCES PIECE(piece_id),
     CHECK (piece_parent_id != piece_composant_id)
 );
-/
 
 
