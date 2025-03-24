@@ -4,5 +4,5 @@ rlwrap sqlplus cochet@ora12
 
 @creation_complexe.sql
 
-select ’drop table" ’ || table_name || ’ " cascade constraints; ’ from use_table;
-
+SELECT 'DROP TABLE "' || table_name || '" CASCADE CONSTRAINTS;' 
+FROM user_tables;
